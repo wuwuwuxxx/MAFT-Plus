@@ -328,7 +328,7 @@ class MAFT_Plus(nn.Module):
             features[k] = features[k].detach()
         features['text_classifier'] = text_classifier
         features['num_templates'] = num_templates
-        outputs = self.sem_seg_head(features)
+        outputs = self.sem_seg_head(features)  ## 没有用到text class_classifier  outputs['pre_logits']应该没用
         mask_results = outputs["pred_masks"].detach()
 
 

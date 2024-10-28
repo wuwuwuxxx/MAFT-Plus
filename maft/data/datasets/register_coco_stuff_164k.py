@@ -38,10 +38,10 @@ def register_all_coco_stuff_164k(root):
     meta = _get_coco_stuff_meta()
 
     for name, image_dirname, sem_seg_dirname in [
-        ("train", "train2017", "stuffthingmaps_detectron2/train2017"),
-        ("test", "val2017", "stuffthingmaps_detectron2/val2017"),
+        ("train", "train2017", "annotations_detectron2/train2017"),
+        ("test", "val2017", "annotations_detectron2/val2017"),
     ]:
-        image_dir = os.path.join(root, image_dirname)
+        image_dir = os.path.join(root, 'images', image_dirname)
         gt_dir = os.path.join(root, sem_seg_dirname)
         all_name = f"openvocab_coco_2017_{name}_stuff_sem_seg"
         newmeta = meta
@@ -62,5 +62,5 @@ def register_all_coco_stuff_164k(root):
         )
 
 
-_root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "coco" / "coco17"
+_root = Path('/home/AI-T1/DatasetPublic/robseg/SSeg_datasets/cocostuff/cocostuff') 
 register_all_coco_stuff_164k(_root)

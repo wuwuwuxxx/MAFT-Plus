@@ -58,8 +58,8 @@ def register_all_ctx459(root):
     # root = os.path.join(root, "pascal_ctx_d2")
     meta = _get_ctx459_meta()
     for name, dirname in [("train", "training"), ("val", "val")]:
-        image_dir = os.path.join(root, dirname, "image")
-        gt_dir = os.path.join(root, 'annotations_detectron2_ovs', "pc459_val")
+        image_dir = os.path.join(root, "JPEGImages")
+        gt_dir = os.path.join(root, 'pcontext459/ann_mmseg/pc459_val')
         # gt_dir = os.path.join(root, "annotations_ctx459", dirname)
         name = f"openvocab_pascal_ctx459_sem_seg_{name}"
         meta['dataname'] = name
@@ -81,5 +81,5 @@ def register_all_ctx459(root):
 
 
         
-_root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "pascal" / "VOCdevkit" / "VOC2010"
+_root = Path('/home/AI-T1/DatasetPublic/robseg/SSeg_datasets/pcontext/') / "VOCdevkit" / "VOC2010"
 register_all_ctx459(_root)

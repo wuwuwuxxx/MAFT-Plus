@@ -21,7 +21,8 @@ INPUT:
   DATASET_MAPPER_NAME: "mask_former_semantic" # mask_former_semantic coco_panoptic_lsj
 DATASETS:
   TRAIN: ("openvocab_coco_2017_train_stuff_sem_seg",)  
-  TEST: ("openvocab_ade20k_full_sem_seg_val", 'openvocab_ade20k_panoptic_val') 
+  TEST: ("openvocab_pascal20_sem_seg_val", "openvocab_ade20k_full_sem_seg_val", 'openvocab_pascal_ctx459_sem_seg_val', 'openvocab_pascal_ctx59_sem_seg_val', 'openvocab_ade20k_sem_seg_val') 
+
 
 SOLVER:
   IMS_PER_BATCH: 8

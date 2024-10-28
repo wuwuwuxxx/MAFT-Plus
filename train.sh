@@ -1,0 +1,1 @@
+python train_net.py --config-file configs/semantic/train_semantic_base.yaml  --num-gpus 4

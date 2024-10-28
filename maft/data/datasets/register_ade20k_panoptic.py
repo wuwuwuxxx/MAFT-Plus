@@ -210,8 +210,9 @@ def register_all_ade20k_semantic(root):
         image_dir = os.path.join(root, "images", dirname)
         gt_dir = os.path.join(root, "annotations_detectron2", dirname)
         name = f"openvocab_ade20k_sem_seg_{name}"
+        metadata['dataname'] = name
         DatasetCatalog.register(
-            name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="png", image_ext="jpg", dataname = name)
+            name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="png", image_ext="jpg", meta=metadata)
         )
         MetadataCatalog.get(name).set(
             stuff_classes=[x["name"] for x in ADE20K_150_CATEGORIES],
@@ -221,6 +222,7 @@ def register_all_ade20k_semantic(root):
             ignore_label=255,
         )
 
-_root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "ade20k"
-register_all_ade20k_panoptic(_root)
+_root = '/home/AI-T1/DatasetPublic/robseg/ade20k/'
+# _root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "ade20k"
+# register_all_ade20k_panoptic(_root)
 register_all_ade20k_semantic(_root)

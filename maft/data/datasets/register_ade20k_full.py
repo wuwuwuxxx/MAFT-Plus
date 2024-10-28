@@ -62,5 +62,5 @@ def register_all_ade20k_847(root):
         )
 
 
-_root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "ade20k"
+_root = Path('/home/AI-T1/DatasetPublic/robseg/') / "ade20k"
 register_all_ade20k_847(_root)

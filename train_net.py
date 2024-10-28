@@ -20,10 +20,13 @@ import copy
 import itertools
 import logging
 import os
-# os.environ['CUDA_VISIBLE_DEVICES'] = '2,4,6'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 from collections import OrderedDict
 from typing import Any, Dict, List, Set
+
+import random
+import numpy as np
 
 import torch
 
@@ -242,6 +245,15 @@ class Trainer(DefaultTrainer):
         res = OrderedDict({k + "_TTA": v for k, v in res.items()})
         return res
 
+def set_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 def setup(args):
     """
@@ -255,6 +267,8 @@ def setup(args):
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.merge_from_list(['SEED', 123])
+    # print(cfg.SEED)
+    # set_seed(cfg.SEED)
     cfg.freeze()
     default_setup(cfg, args)
     # Setup logger for "maft-plus" module
@@ -264,7 +278,11 @@ def setup(args):
 
 def main(args):
     # torch.multiprocessing.set_start_method('spawn')
+    # args.config_file = 'configs/semantic/eval_base.yaml'
+    # args.eval_only = True
+    # args.num_gpus = 1
     cfg = setup(args)
+
 
     if args.eval_only:
         model = Trainer.build_model(cfg)

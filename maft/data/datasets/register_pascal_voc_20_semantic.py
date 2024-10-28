@@ -62,7 +62,7 @@ def register_all_pascal20(root):
     meta = _get_pascal20_meta()
     for name, dirname in [("train", "training"), ("val", "validation")]: 
         image_dir = os.path.join(root, "JPEGImages")
-        gt_dir = os.path.join(root, "annotations_detectron2_ovs", 'val') 
+        gt_dir = os.path.join(root, "annotations_detectron2", 'val') 
         name = f"openvocab_pascal20_sem_seg_{name}"
         meta['dataname'] = name
         DatasetCatalog.register(
@@ -80,5 +80,5 @@ def register_all_pascal20(root):
             **{'dataset_name': 'openvocab_pascal20_sem_seg_val'},
         )
         
-_root = Path(os.getenv("DETECTRON2_DATASETS", "datasets")) / "pascal" / "VOCdevkit" / "VOC2012"
+_root = Path('/home/AI-T1/DatasetPublic/robseg/SSeg_datasets/VOC/') / "VOCdevkit" / "VOC2012"
 register_all_pascal20(_root)
